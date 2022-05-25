@@ -1,0 +1,21 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+
+# Rails用に最適化
+Rails:
+  Enabled: true
+
+LineLength:
+  Max: 130
+
+AllCops:
+  TargetRubyVersion: 2.7.3
+  Exclude:
+    - 'bin/*'
+    - 'config/environments/*'
+    - 'config/application.rb'
+    - 'config/initializers/*'
+    - 'config/spring.rb'
+    - 'db/**/*'
+    - 'spec/**/*'
+    - 'vendor/**/*'
