@@ -29,29 +29,34 @@
           <div class="media">
             <div class="media-left productSlider">
               <div id="carousel" class="carousel slide" data-ride="carousel">
+
+                <!-- メイン写真部分(大サイズ) -->
                 <div class="carousel-inner">
-                  <div class="item active" data-thumb="0">
-                    <%= image_tag("img/products/signle-product/product-slide-big-01.jpg") %>
-                  </div>
-                  <div class="item" data-thumb="1">
-                    <%= image_tag("img/products/signle-product/product-slide-big-02.jpg") %>
-                  </div>
-                  <div class="item" data-thumb="2">
-                    <%= image_tag("img/products/signle-product/product-slide-big-03.jpg") %>
-                  </div>
-                  <div class="item" data-thumb="3">
-                    <%= image_tag("img/products/signle-product/product-slide-big-04.jpg") %>
-                  </div>
+                  <% @product.images.each.with_index do |item, index| %>
+                    <% if index <= 0 %>
+                      <div class="item active" data-thumb="<%= index %>">
+                        <%= image_tag(item.attachment(:large)) %>  <!-- {:mini=>"48x48>", :small=>"400x400>", :product=>"680x680>", :large=>"1200x1200>"} -->
+                      </div>
+                    <% else %>
+                      <div class="item"  data-thumb="<%= index %>">
+                        <%= image_tag(item.attachment(:large)) %>
+                      </div>
+                    <% end %>
+                  <% end %>
                 </div>
+
               </div>
               <div class="clearfix">
                 <div id="thumbcarousel" class="carousel slide" data-interval="false">
+
+                  <!-- スライド写真部分(小サイズ) -->
                   <div class="carousel-inner">
                       <div data-target="#carousel" data-slide-to="0" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-01.jpg") %></div>
                       <div data-target="#carousel" data-slide-to="1" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-02.jpg") %></div>
                       <div data-target="#carousel" data-slide-to="2" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-03.jpg") %></div>
                       <div data-target="#carousel" data-slide-to="3" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-04.jpg") %></div>
                   </div>
+
                   <a class="left carousel-control" href="#thumbcarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                   </a>
