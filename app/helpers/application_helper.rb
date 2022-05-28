@@ -5,7 +5,7 @@ module ApplicationHelper
     if page_title.blank?  # toppageなどpage_titleが空,nilの対策
       BASE_TITLE
     else
-      "#{page_title.upcase} - #{BASE_TITLE}"
+      "#{page_title} - #{BASE_TITLE}"
     end
   end
 end
