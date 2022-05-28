@@ -30,12 +30,12 @@
             <div class="media-left productSlider">
               <div id="carousel" class="carousel slide" data-ride="carousel">
 
-                <!-- メイン写真部分(大サイズ) -->
+                <!-- メイン写真部分(大サイズ), {:mini=>"48x48>", :small=>"400x400>", :product=>"680x680>", :large=>"1200x1200>"} -->
                 <div class="carousel-inner">
                   <% @product.images.each.with_index do |item, index| %>
                     <% if index <= 0 %>
                       <div class="item active" data-thumb="<%= index %>">
-                        <%= image_tag(item.attachment(:large)) %>  <!-- {:mini=>"48x48>", :small=>"400x400>", :product=>"680x680>", :large=>"1200x1200>"} -->
+                        <%= image_tag(item.attachment(:large)) %>
                       </div>
                     <% else %>
                       <div class="item"  data-thumb="<%= index %>">
@@ -49,12 +49,13 @@
               <div class="clearfix">
                 <div id="thumbcarousel" class="carousel slide" data-interval="false">
 
-                  <!-- スライド写真部分(小サイズ) -->
+                  <!-- サブ写真部分(小サイズ) -->
                   <div class="carousel-inner">
-                      <div data-target="#carousel" data-slide-to="0" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-01.jpg") %></div>
-                      <div data-target="#carousel" data-slide-to="1" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-02.jpg") %></div>
-                      <div data-target="#carousel" data-slide-to="2" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-03.jpg") %></div>
-                      <div data-target="#carousel" data-slide-to="3" class="thumb"><%= image_tag("img/products/signle-product/product-slide-small-04.jpg") %></div>
+                    <% @product.images.each.with_index do |image, index| %>
+                      <div data-target="#carousel" data-slide-to="<%= index %>" class="thumb">
+                        <%= image_tag(image.attachment(:mini)) %>
+                      </div>
+                    <% end %>
                   </div>
 
                   <a class="left carousel-control" href="#thumbcarousel" role="button" data-slide="prev">
