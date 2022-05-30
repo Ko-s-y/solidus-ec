@@ -1,6 +1,5 @@
 <%= render partial: 'shared/page_title', locals: { page_title: @product.name } %>
 <div class="main-wrapper">
-
   <!-- LIGHT SECTION -->
   <section class="lightSection clearfix pageHeader">
     <div class="container">
@@ -21,7 +20,6 @@
       </div>
     </div>
   </section>
-
   <!-- MAIN CONTENT SECTION -->
   <section class="mainContent clearfix">
     <div class="container">
@@ -30,7 +28,6 @@
           <div class="media">
             <div class="media-left productSlider">
               <div id="carousel" class="carousel slide" data-ride="carousel">
-
                 <!-- メイン写真部分(大サイズ), {:mini=>"48x48>", :small=>"400x400>", :product=>"680x680>", :large=>"1200x1200>"} -->
                 <div class="carousel-inner">
                   <% @product.images.each.with_index do |item, index| %>
@@ -45,11 +42,9 @@
                     <% end %>
                   <% end %>
                 </div>
-
               </div>
               <div class="clearfix">
                 <div id="thumbcarousel" class="carousel slide" data-interval="false">
-
                   <!-- サブ写真部分(小サイズ) -->
                   <div class="carousel-inner">
                     <% @product.images.each.with_index do |image, index| %>
@@ -58,7 +53,6 @@
                       </div>
                     <% end %>
                   </div>
-
                   <a class="left carousel-control" href="#thumbcarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                   </a>
@@ -95,34 +89,6 @@
               <div class="btn-area">
                 <a href="cart_page.html" class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></a>
               </div>
-              <!-- <div class="tabArea">
-                <ul class="nav nav-tabs">
-                  <li class="active"><a data-toggle="tab" href="#details">details</a></li>
-                  <li><a data-toggle="tab" href="#about-art">about art</a></li>
-                  <li><a data-toggle="tab" href="#sizing">sizing</a></li>
-                  <li><a data-toggle="tab" href="#shipping">shipping</a></li>
-                </ul>
-                <div class="tab-content">
-                  <div id="details" class="tab-pane fade in active">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <ul class="list-unstyled">
-                      <li>Black, Crew Neck</li>
-                      <li>75% Cotton, 25% Rayon</li>
-                      <li>Waterbased Ink</li>
-                      <li>Wash Cold, dry low</li>
-                    </ul>
-                  </div>
-                  <div id="about-art" class="tab-pane fade">
-                    <p>Nulla facilisi. Mauris efficitur, massa et iaculis accumsan, mauris velit ultrices purus, quis condimentum nibh dolor ut tortor. Donec egestas tortor quis mattis gravida. Ut efficitur elit vitae dignissim volutpat. </p>
-                  </div>
-                  <div id="sizing" class="tab-pane fade">
-                    <p>Praesent dui felis, gravida a auctor at, facilisis commodo ipsum. Cras eu faucibus justo. Nullam varius cursus nisi, sed elementum sem sagittis at. Nulla tellus massa, vestibulum a commodo facilisis, pulvinar convallis nunc.</p>
-                  </div>
-                  <div id="shipping" class="tab-pane fade">
-                    <p>Mauris lobortis augue ex, ut faucibus nisi mollis ac. Sed volutpat scelerisque ex ut ullamcorper. Cras at velit quis sapien dapibus laoreet a id odio. Sed sit amet accumsan ante, eu congue metus. Aenean eros tortor, cursus quis feugiat sed, vestibulum vel purus.</p>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
