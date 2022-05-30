@@ -15,5 +15,11 @@ RSpec.describe ApplicationHelper do
 
       it { is_expected.to eq("BIGBAG Store") }
     end
+
+    context "page_titleが空白の場合" do
+      let(:page_title) { "" }
+
+      it { is_expected.to eq("BIGBAG Store") }
+    end
   end
 end
