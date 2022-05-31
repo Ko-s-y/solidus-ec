@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper do
-  describe "タブのタイトル表示が正確に行われているか" do
+  describe "#full_title" do
     subject { full_title(page_title) }
 
     context "page_titleが存在する場合" do
