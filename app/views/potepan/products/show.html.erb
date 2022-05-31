@@ -1,4 +1,4 @@
-<%= render partial: 'shared/page_title', locals: { page_title: @product.name } %>
+<% provide(:title, @product.name) %>
 <div class="main-wrapper">
   <!-- LIGHT SECTION -->
   <section class="lightSection clearfix pageHeader">
