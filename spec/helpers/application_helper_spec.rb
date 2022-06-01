@@ -2,24 +2,17 @@ require 'rails_helper'
 
 RSpec.describe ApplicationHelper do
   describe "#full_title" do
-    subject { full_title(page_title) }
-
-    context "page_titleが存在する場合" do
-      let(:page_title) { "test" }
-
-      it { is_expected.to eq("test - BIGBAG Store") }
+    context "page_title exists as test" do
+      it "full_title is 'test - BIGBAG Store'" do
+        expect(full_title("test")).to eq "test - BIGBAG Store"
+      end
     end
 
-    context "page_titleが存在しない(nil)の場合" do
-      let(:page_title) { nil }
-
-      it { is_expected.to eq("BIGBAG Store") }
-    end
-
-    context "page_titleが空白の場合" do
-      let(:page_title) { "" }
-
-      it { is_expected.to eq("BIGBAG Store") }
+    context "page_title is nil or blank" do
+      it "full_title is 'BIGBAG Store'" do
+        expect(full_title(nil)).to eq "BIGBAG Store"
+        expect(full_title("")).to eq "BIGBAG Store"
+      end
     end
   end
 end
