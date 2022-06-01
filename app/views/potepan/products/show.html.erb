@@ -9,28 +9,22 @@
           <div class="media">
             <div class="media-left productSlider">
               <div id="carousel" class="carousel slide" data-ride="carousel">
-                <!-- メイン写真部分(大サイズ), {:mini=>"48x48>", :small=>"400x400>", :product=>"680x680>", :large=>"1200x1200>"} -->
+                <!-- MAIN PHOTO SECTION　-->
                 <div class="carousel-inner">
                   <% @product.images.each.with_index do |item, index| %>
-                    <% if index.zero? %>
-                      <div class="item active" data-thumb="<%= index %>">
-                        <%= image_tag(item.attachment(:large)) %>
-                      </div>
-                    <% else %>
-                      <div class="item"  data-thumb="<%= index %>">
-                        <%= image_tag(item.attachment(:large)) %>
-                      </div>
-                    <% end %>
+                    <div class="item <%= "active" if index.zero? %>" data-thumb="<%= index %>">
+                      <%= image_tag(item.attachment(:large)) %>
+                    </div>
                   <% end %>
                 </div>
               </div>
               <div class="clearfix">
                 <div id="thumbcarousel" class="carousel slide" data-interval="false">
-                  <!-- サブ写真部分(小サイズ) -->
+                  <!-- SUB PHOTO SECTION -->
                   <div class="carousel-inner">
                     <% @product.images.each.with_index do |image, index| %>
                       <div data-target="#carousel" data-slide-to="<%= index %>" class="thumb">
-                        <%= image_tag(image.attachment(:mini)) %>
+                        <%= image_tag(image.attachment(:small)) %>
                       </div>
                     <% end %>
                   </div>
