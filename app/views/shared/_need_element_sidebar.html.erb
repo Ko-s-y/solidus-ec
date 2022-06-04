@@ -2,27 +2,15 @@
   <div class="panel-heading"><%= taxonomy.name %>で探す</div>
   <div class="panel-body">
     <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
-
       <ul class="nav navbar-nav side-nav">
-
-        <!-- Category,Brandの子ノードをtaxonに -->
-        <% taxonomy.root.children.each do |taxon| %>
-
+        <% taxonomy.leaves.each do |taxon| %>
           <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#women">レディース<i class="fa fa-plus"></i></a>
-            <ul id="women" class="collapse collapseItem">
-              <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>トップス <span>(6)</span></a></li>
-            </ul>
-          </li>
-
-          <li>
-            <%= link_to potepan_category_path(taxon.id) do %>
+            <%= link_to potepan_category_path(taxon.id), data: {toggle: "collapse", target: "#category-#{taxon.id}"} do %>
               <%= taxon.name %>
+              <span>(<%= taxon.products.count %>)</span>
             <% end %>
           </li>
-
         <% end %>
-
       </ul>
     </div>
   </div>
