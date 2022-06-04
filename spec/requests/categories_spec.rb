@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::Categories", type: :request do
   describe "#show" do
-    let(:taxon) { create(:taxon) }
+    let(:taxon) { create(:taxon, name: "Ruby on Rails") }
     let(:product) { create(:product, taxons: [taxon]) }
-    let(:taxonomy) { create(:taxonomy) }
+    let(:taxonomy) { create(:taxonomy, name: "Brand") }
 
     before do
       get potepan_category_url(taxon.id)
