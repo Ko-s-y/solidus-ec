@@ -3,7 +3,7 @@
   <div class="panel-body">
     <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
       <ul class="nav navbar-nav side-nav">
-        <% taxonomy.leaves.each do |taxon| %>
+        <% taxonomy.root.leaves.each do |taxon| %>
           <li>
             <%= link_to potepan_category_path(taxon.id), data: {toggle: "collapse", target: "#category-#{taxon.id}"} do %>
               <%= taxon.name %>
