@@ -4,10 +4,7 @@
   <section class="mainContent clearfix productsContent">
     <div class="container">
       <div class="row">
-        <div class="col-md-3 col-sm-4 col-xs-12 sideBar">
-          <%= render partial: "shared/need_element_sidebar", collection: @taxonomies, as: "taxonomy" %>
-          <%= render partial: "shared/needless_element_sidebar" %>
-        </div>
+        <%= render "shared/categories_sidebar", taxonomies: @taxonomies %>
         <div class="col-md-9 col-sm-8 col-xs-12">
           <div class="row filterArea">
             <div class="col-xs-6">
