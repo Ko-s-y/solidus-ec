@@ -1,7 +1,6 @@
 <% provide(:title, @product.name) %>
 <%= render "shared/light_section", header_element: @product %>
 <div class="main-wrapper">
-  <!-- MAIN CONTENT SECTION -->
   <section class="mainContent clearfix">
     <div class="container">
       <div class="row singleProduct">
@@ -9,7 +8,6 @@
           <div class="media">
             <div class="media-left productSlider">
               <div id="carousel" class="carousel slide" data-ride="carousel">
-                <!-- MAIN PHOTO SECTION　-->
                 <div class="carousel-inner">
                   <% @product.images.each.with_index do |item, index| %>
                     <div class="item <%= "active" if index.zero? %>" data-thumb="<%= index %>">
@@ -20,7 +18,6 @@
               </div>
               <div class="clearfix">
                 <div id="thumbcarousel" class="carousel slide" data-interval="false">
-                  <!-- SUB PHOTO SECTION -->
                   <div class="carousel-inner">
                     <% @product.images.each.with_index do |image, index| %>
                       <div data-target="#carousel" data-slide-to="<%= index %>" class="thumb">
