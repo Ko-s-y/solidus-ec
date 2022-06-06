@@ -29,7 +29,7 @@
                 <div class="productBox">
                   <%= link_to potepan_product_path(product.id) do %>
                     <div class="productImage clearfix">
-                      <%= image_tag(product.display_image.attachment(:product), alt: "#{product.name}-img") %>
+                      <%= image_tag(product.images.first.attachment(:product), alt: "#{product.name}-img") %>
                     </div>
                     <div class="productCaption clearfix">
                       <h5><%= product.name %></h5>

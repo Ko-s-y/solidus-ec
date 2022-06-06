@@ -22,6 +22,10 @@ RSpec.feature "Potepan::Categories_feature", type: :feature do
       expect(page).to have_title "#{taxon.name} - BIGBAG Store"
     end
 
+    scenario "accurate count number of products for each categories" do
+      expect(page.all('.productBox').count).to eq taxon.products.count
+    end
+
     scenario "displayed and correct taxon value in shared/light_section" do
       expect(page).to have_selector ".col-xs-6 h2", text: taxon.name
       expect(page).to have_selector ".active", text: taxon.name
