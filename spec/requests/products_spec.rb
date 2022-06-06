@@ -6,6 +6,7 @@ RSpec.describe "Potepan::Products", type: :request do
     let(:product) { create(:product, taxons: [taxon]) }
 
     before do
+      get potepan_category_url(taxon.id)
       get potepan_product_url(product.id)
     end
 
