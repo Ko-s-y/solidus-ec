@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Potepan::Categories", type: :request do
+RSpec.describe "Potepan::Categories_request", type: :request do
   describe "#show" do
     let(:taxon) { create(:taxon, name: "Ruby on Rails") }
     let(:product) { create(:product, taxons: [taxon]) }

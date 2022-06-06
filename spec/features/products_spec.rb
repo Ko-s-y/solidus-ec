@@ -1,19 +1,17 @@
 require 'rails_helper'
 
-RSpec.feature "Potepan::Products", type: :feature do
+RSpec.feature "Potepan::Products_feature", type: :feature do
   feature "#show" do
-    given(:taxon) { create(:taxon) }
-    given(:taonomy) { create(:taxonomy) }
-    given(:product) { create(:product, taxon: [taxon])}
+    given!(:taxon) { create(:taxon) }
+    given!(:taxonomy) { create(:taxonomy) }
+    given!(:product) { create(:product, taxons: [taxon]) }
 
     background do
-      visit potepan_category_path(taxon.id)
       visit potepan_product_path(product.id)
     end
 
-
-
-
-
+    scenario "redirect to /potepan" do
+      expect(page).to have_link "Home", href: potepan_path
+    end
   end
 end
