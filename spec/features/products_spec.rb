@@ -10,20 +10,20 @@ RSpec.feature "Potepan::Products_feature", type: :feature do
       visit potepan_product_path(product.id)
     end
 
-    scenario "redirect to /potepan" do
+    scenario "correct current product path" do
+      expect(page).to have_current_path potepan_product_path(product.id)
+    end
+
+    scenario "to /potepan" do
       expect(page).to have_link "Home", href: potepan_path
     end
 
-    scenario "redirect to /potepan/categories/:id" do
+    scenario "to /potepan/categories/:id" do
       expect(page).to have_link '一覧ページへ戻る', href: potepan_category_path(product.taxons.first.id)
     end
 
     scenario "displayed and correct page title" do
       expect(page).to have_title "#{product.name} - BIGBAG Store"
-    end
-
-    scenario "correct product path" do
-      expect(page).to have_current_path potepan_product_path(product.id)
     end
 
     scenario "displayed and correct product value in products/show" do
