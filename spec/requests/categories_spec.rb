@@ -4,7 +4,7 @@ RSpec.describe "Potepan::Categories_request", type: :request do
   describe "#show" do
     let(:taxon) { create(:taxon) }
     let(:taxonomy) { create(:taxonomy) }
-    let(:product) { create(:product, taxons:[taxon], description: "It is inspection!!") }
+    let(:product) { create(:product, taxons: [taxon], description: "It is inspection!!") }
     let(:image) { create(:image) }
 
     before do

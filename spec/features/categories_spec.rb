@@ -5,7 +5,9 @@ RSpec.feature "Potepan::Categories_feature", type: :feature do
     given!(:image) { create(:image) }
     given!(:taxonomy) { create(:taxonomy) }
     given!(:taxon) { create(:taxon, taxonomy: taxonomy) }
-    given!(:product) { create(:product, taxons: [taxon]) }
+    given!(:othre_taxon) { create(:taxon, taxonomy: taxonomy) }
+    given!(:product) { create(:product, name: "product", price: "11.11", taxons: [taxon]) }
+    given!(:other_product) { create(:product, name: "other-product", price: "77.77", taxons: [othre_taxon]) }
 
     background do
       product.images << image
@@ -24,13 +26,15 @@ RSpec.feature "Potepan::Categories_feature", type: :feature do
       expect(page).to have_title "#{taxon.name} - BIGBAG Store"
     end
 
-    scenario "accurate count number of products for each categories" do
+    scenario "accurate count number of products for each category" do
       expect(page.all('.productBox').count).to eq taxon.products.count
     end
 
     scenario "displayed Products for each category" do
       expect(page).to have_selector ".productCaption h5", text: product.name
       expect(page).to have_selector ".productCaption h3", text: product.display_price
+      expect(page).not_to have_selector ".productCaption h5", text: other_product.name
+      expect(page).not_to have_selector ".productCaption h3", text: other_product.display_price
     end
 
     scenario "displayed and correct taxon value in categories/show" do
