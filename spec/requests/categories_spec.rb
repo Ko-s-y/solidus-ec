@@ -12,8 +12,6 @@ RSpec.describe "Potepan::Categories_request", type: :request do
       taxon.products << product
       product.images << image
       get potepan_category_path(taxon.id)
-      # 画像URL取得が上手くいかない問題への対応
-      # https://mng-camp.potepan.com/curriculums/document-for-final-task-2#notes-of-image-test
       ActiveStorage::Current.host = request.base_url
     end
 
@@ -36,7 +34,6 @@ RSpec.describe "Potepan::Categories_request", type: :request do
 
     it "get product image info" do
       expect(response.body).to include product.images.first.attachment(:product)
-      # expect(response.body).to include product.images.first.url(:product)
     end
   end
 end

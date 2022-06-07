@@ -18,6 +18,10 @@ RSpec.feature "Potepan::Categories_feature", type: :feature do
       expect(page).to have_link "Home", href: potepan_path
     end
 
+    # scenario "to /potepan/products/:id" do
+    #   expect(page).to have_link product.name, href: potepan_product_path(product.id)
+    # end
+
     scenario "displayed and correct page title" do
       expect(page).to have_title "#{taxon.name} - BIGBAG Store"
     end
@@ -26,9 +30,23 @@ RSpec.feature "Potepan::Categories_feature", type: :feature do
       expect(page.all('.productBox').count).to eq taxon.products.count
     end
 
+    # scenario "displayed and correct taxon value in categories/show" do
+    #   expect(page).to have_selector ".", text: taxon.name
+    # end
+
+    # scenario "displayed and correct taxonomy value in categories/show" do
+    #   expect(page).to have_selector ".panel-heading", text: "Brand"
+    # end
+
+    # scenario "displayed and correct product value in categories/show" do
+    #   expect(page).to have_selector ".productCaption h5", text: product.name
+    #   expect(page).to have_selector ".productCaption h3", text: product.display_price
+    # end
+
     scenario "displayed and correct taxon value in shared/light_section" do
       expect(page).to have_selector ".col-xs-6 h2", text: taxon.name
       expect(page).to have_selector ".active", text: taxon.name
     end
   end
 end
+
