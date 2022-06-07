@@ -2,11 +2,13 @@ require 'rails_helper'
 
 RSpec.feature "Potepan::Categories_feature", type: :feature do
   feature "#show" do
-    given(:taxon) { create(:taxon) }
-    given(:taxonomy) { create(:taxonomy) }
-    given(:product) { create(:product, taxons: [taxon]) }
+    given!(:image) { create(:image) }
+    given!(:taxonomy) { create(:taxonomy) }
+    given!(:taxon) { create(:taxon, taxonomy: taxonomy) }
+    given!(:product) { create(:product, taxons: [taxon]) }
 
     background do
+      product.images << image
       visit potepan_category_path(taxon.id)
     end
 
@@ -24,6 +26,11 @@ RSpec.feature "Potepan::Categories_feature", type: :feature do
 
     scenario "accurate count number of products for each categories" do
       expect(page.all('.productBox').count).to eq taxon.products.count
+    end
+
+    scenario "displayed Products for each category" do
+      expect(page).to have_selector ".productCaption h5", text: product.name
+      expect(page).to have_selector ".productCaption h3", text: product.display_price
     end
 
     scenario "displayed and correct taxon value in categories/show" do
