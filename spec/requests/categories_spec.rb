@@ -4,12 +4,10 @@ RSpec.describe "Potepan::Categories_request", type: :request do
   describe "#show" do
     let(:taxon) { create(:taxon) }
     let(:taxonomy) { create(:taxonomy) }
-    let(:product) { create(:product) }
+    let(:product) { create(:product, taxons:[taxon], description: "It is inspection!!") }
     let(:image) { create(:image) }
 
     before do
-      taxonomy.taxons << taxon
-      taxon.products << product
       product.images << image
       get potepan_category_path(taxon.id)
       ActiveStorage::Current.host = request.base_url
@@ -21,6 +19,7 @@ RSpec.describe "Potepan::Categories_request", type: :request do
 
     it "correct product value" do
       expect(response.body).to include product.name
+      expect(product.description).to eq "It is inspection!!"
       expect(response.body).to include product.display_price.to_s
     end
 

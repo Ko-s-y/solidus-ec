@@ -23,7 +23,7 @@ RSpec.describe "Potepan::Products_request", type: :request do
     end
 
     it "get product image info" do
-      product.images { |image| expect(response.body).to include image.attachment(:prduct) }
+      product.images { |image| expect(response.body).to include image.attachment(:product) }
     end
   end
 end
