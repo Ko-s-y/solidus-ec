@@ -36,5 +36,9 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
       expect(page).to have_selector ".col-xs-6 h2", text: product.name
       expect(page).to have_selector ".active", text: product.name
     end
+
+    scenario "not displayed <SHOP> in shared/light_section" do
+      expect(page).not_to have_selector ".col-xs-6 li", text: "Shop"
+    end
   end
 end

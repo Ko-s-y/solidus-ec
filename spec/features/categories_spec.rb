@@ -45,5 +45,9 @@ RSpec.feature "Categories feature of Potepanec", type: :feature do
       expect(page).to have_selector ".col-xs-6 h2", text: taxon.name
       expect(page).to have_selector ".active", text: taxon.name
     end
+
+    scenario "displayed <SHOP> in shared/light_section" do
+      expect(page).to have_selector ".col-xs-6 li", text: "Shop"
+    end
   end
 end
