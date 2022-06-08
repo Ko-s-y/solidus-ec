@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.feature "Potepan::Categories_feature", type: :feature do
+RSpec.feature "Categories feature of Potepanec", type: :feature do
   feature "#show" do
     given!(:image) { create(:image) }
     given!(:taxonomy) { create(:taxonomy) }
     given!(:taxon) { create(:taxon, taxonomy: taxonomy) }
-    given!(:othre_taxon) { create(:taxon, taxonomy: taxonomy) }
+    given!(:other_taxon) { create(:taxon, taxonomy: taxonomy) }
     given!(:product) { create(:product, name: "product", price: "11.11", taxons: [taxon]) }
-    given!(:other_product) { create(:product, name: "other-product", price: "77.77", taxons: [othre_taxon]) }
+    given!(:other_product) { create(:product, name: "other-product", price: "77.77", taxons: [other_taxon]) }
 
     background do
       product.images << image

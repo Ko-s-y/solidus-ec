@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Potepan::Categories_request", type: :request do
+RSpec.describe "Categories request of Potepanec", type: :request do
   describe "#show" do
     let(:taxon) { create(:taxon) }
     let(:taxonomy) { create(:taxonomy) }

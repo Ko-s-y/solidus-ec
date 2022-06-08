@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Potepan::Products_feature", type: :feature do
+RSpec.feature "Products feature of Potepanec", type: :feature do
   feature "#show" do
     given(:taxon) { create(:taxon) }
     given(:taxonomy) { create(:taxonomy) }
