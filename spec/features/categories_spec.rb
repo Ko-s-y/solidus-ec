@@ -6,7 +6,7 @@ RSpec.feature "Categories feature of Potepanec", type: :feature do
     given!(:taxonomy) { create(:taxonomy) }
     given!(:taxon) { create(:taxon, taxonomy: taxonomy) }
     given!(:other_taxon) { create(:taxon, taxonomy: taxonomy) }
-    given!(:product) { create(:product, name: "product", price: "11.11", taxons: [taxon]) }
+    given!(:product) { create(:product, taxons: [taxon]) }
     given!(:other_product) { create(:product, name: "other-product", price: "77.77", taxons: [other_taxon]) }
 
     background do

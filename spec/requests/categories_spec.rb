@@ -4,7 +4,7 @@ RSpec.describe "Categories request of Potepanec", type: :request do
   describe "#show" do
     let(:taxon) { create(:taxon) }
     let(:taxonomy) { create(:taxonomy) }
-    let(:product) { create(:product, taxons: [taxon], description: "It is inspection!!") }
+    let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
 
     before do
@@ -19,7 +19,6 @@ RSpec.describe "Categories request of Potepanec", type: :request do
 
     it "correct product value" do
       expect(response.body).to include product.name
-      expect(product.description).to eq "It is inspection!!"
       expect(response.body).to include product.display_price.to_s
     end
 
