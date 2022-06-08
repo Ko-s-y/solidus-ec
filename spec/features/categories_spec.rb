@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.feature "Categories feature of Potepanec", type: :feature do
   feature "#show" do
-    given!(:image) { create(:image) }
-    given!(:taxonomy) { create(:taxonomy) }
-    given!(:taxon) { create(:taxon, taxonomy: taxonomy) }
-    given!(:other_taxon) { create(:taxon, taxonomy: taxonomy) }
-    given!(:product) { create(:product, taxons: [taxon]) }
-    given!(:other_product) { create(:product, name: "other-product", price: "77.77", taxons: [other_taxon]) }
+    given(:image) { create(:image) }
+    given(:taxonomy) { create(:taxonomy) }
+    given(:taxon) { create(:taxon, taxonomy: taxonomy) }
+    given(:other_taxon) { create(:taxon, taxonomy: taxonomy) }
+    given(:product) { create(:product, taxons: [taxon]) }
+    given(:other_product) { create(:product, name: "other-product", price: "77.77", taxons: [other_taxon]) }
 
     background do
       product.images << image
@@ -34,11 +34,20 @@ RSpec.feature "Categories feature of Potepanec", type: :feature do
       expect(page).to have_selector ".sideBar", text: taxon.products.count
     end
 
-    scenario "displayed Products for each category" do
+    scenario "displayed products for each category" do
       expect(page).to have_selector ".productCaption h5", text: product.name
       expect(page).to have_selector ".productCaption h3", text: product.display_price
       expect(page).not_to have_selector ".productCaption h5", text: other_product.name
       expect(page).not_to have_selector ".productCaption h3", text: other_product.display_price
+    end
+
+    scenario "displayed products belong to chose category" do
+      expect(page).to have_content product.name
+      expect(page).to have_content product.display_price
+      expect(page).to have_link href: potepan_product_path(product.id)
+      expect(page).not_to have_content other_product.name
+      expect(page).not_to have_content other_product.display_price
+      expect(page).not_to have_link href: potepan_product_path(other_product.id)
     end
 
     scenario "displayed and correct taxon value in categories/show" do
