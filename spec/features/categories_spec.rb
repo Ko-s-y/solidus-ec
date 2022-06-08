@@ -30,8 +30,8 @@ RSpec.feature "Categories feature of Potepanec", type: :feature do
       expect(page.all('.productBox').count).to eq taxon.products.count
     end
 
-    scenario "displayed count number of products for each category" do
-      expect(page).to have_selector ".sideBar", text:  taxon.products.count
+    scenario "displayed count number of products for each category on sideBar" do
+      expect(page).to have_selector ".sideBar", text: taxon.products.count
     end
 
     scenario "displayed Products for each category" do
