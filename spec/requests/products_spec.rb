@@ -24,6 +24,7 @@ RSpec.describe "Products request of Potepanec", type: :request do
 
     it "get product image info" do
       product.images { |image| expect(response.body).to include image.attachment(:product) }
+      product.images.all?
     end
   end
 end

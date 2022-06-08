@@ -11,7 +11,7 @@
           <li>
             <%= link_to "Home", potepan_path %>
           </li>
-          <% if category_page %>
+          <% if controller.controller_name == "categories" %>
             <li>
               <%= link_to "Shop", "#" %>
             </li>
