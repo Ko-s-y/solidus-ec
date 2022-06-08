@@ -7,8 +7,8 @@ RSpec.describe "Products request of Potepanec", type: :request do
     let(:image) { create(:image) }
 
     before do
-      get potepan_product_url(product.id)
       product.images << image
+      get potepan_product_url(product.id)
       ActiveStorage::Current.host = request.base_url
     end
 
@@ -23,7 +23,8 @@ RSpec.describe "Products request of Potepanec", type: :request do
     end
 
     it "get product image info" do
-      expect(response.body).to include product.images.first.attachment(:product)
+      expect(response.body).to include product.images.first.attachment(:large)
+      expect(response.body).to include product.images.first.attachment(:small)
     end
   end
 end
