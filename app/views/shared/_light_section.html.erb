@@ -11,9 +11,11 @@
           <li>
             <%= link_to "Home", potepan_path %>
           </li>
-          <li>
-            <%= link_to "Shop", "#" %>
-          </li>
+          <% if category_page %>
+            <li>
+              <%= link_to "Shop", "#" %>
+            </li>
+          <% end %>
           <li class="active"><%= header_name %></li>
         </ol>
       </div>
