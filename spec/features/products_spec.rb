@@ -2,11 +2,15 @@ require 'rails_helper'
 
 RSpec.feature "Products feature of Potepanec", type: :feature do
   feature "#show" do
-    given(:taxon) { create(:taxon) }
+    given(:image) { create(:image) }
     given(:taxonomy) { create(:taxonomy) }
+    given(:taxon) { create(:taxon, taxonomy: taxonomy) }
     given(:product) { create(:product, taxons: [taxon]) }
+    given(:related_products) { create_list(:product, 4, taxons: [taxon]) }
 
     background do
+      product.images << image
+      related_products.each { |related_product| related_product.images << create(:image) }
       visit potepan_product_path(product.id)
     end
 
@@ -42,3 +46,4 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     end
   end
 end
+
