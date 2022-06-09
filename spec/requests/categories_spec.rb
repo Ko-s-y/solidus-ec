@@ -1,14 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "Products request of Potepanec", type: :request do
+RSpec.describe "Categories request of Potepanec", type: :request do
   describe "#show" do
     let(:taxon) { create(:taxon) }
+    let(:taxonomy) { create(:taxonomy) }
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
 
     before do
       product.images << image
-      get potepan_product_url(product.id)
+      get potepan_category_path(taxon.id)
       ActiveStorage::Current.host = request.base_url
     end
 
@@ -19,12 +20,18 @@ RSpec.describe "Products request of Potepanec", type: :request do
     it "correct product value" do
       expect(response.body).to include product.name
       expect(response.body).to include product.display_price.to_s
-      expect(response.body).to include product.description
+    end
+
+    it "correct taxon value" do
+      expect(response.body).to include taxon.name
+    end
+
+    it "correct taxonomy value" do
+      expect(response.body).to include taxonomy.name
     end
 
     it "get product image info" do
-      expect(response.body).to include product.images.first.attachment(:large)
-      expect(response.body).to include product.images.first.attachment(:small)
+      expect(response.body).to include product.images.first.attachment(:product)
     end
   end
 end
