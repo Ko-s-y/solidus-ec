@@ -46,4 +46,3 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     end
   end
 end
-

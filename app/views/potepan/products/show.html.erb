@@ -9,9 +9,9 @@
             <div class="media-left productSlider">
               <div id="carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                  <% @product.images.each.with_index do |item, index| %>
+                  <% @product.images.each.with_index do |image, index| %>
                     <div class="item <%= "active" if index.zero? %>" data-thumb="<%= index %>">
-                      <%= image_tag(item.attachment(:large)) %>
+                      <%= image_tag(image.attachment(:large)) %>
                     </div>
                   <% end %>
                 </div>
