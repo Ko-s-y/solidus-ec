@@ -7,4 +7,5 @@ module Potepan::ProductDecorator
       where.not(id: id).
       distinct
   end
+  Spree::Product.prepend self
 end
