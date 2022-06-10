@@ -1,4 +1,4 @@
-Spree::Product.class_eval do
+module Potepan::ProductDecorator
   def related_products
     Spree::Product.
       all.
