@@ -5,7 +5,9 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     given(:image) { create(:image) }
     given(:taxonomy) { create(:taxonomy) }
     given(:taxon) { create(:taxon, taxonomy: taxonomy) }
+    given(:other_taxon) { create(:taxon, taxonomy: taxonomy) }
     given(:product) { create(:product, taxons: [taxon]) }
+    given(:other_product) { create(:product, taxons: [other_taxon]) }
     given(:related_products) { create_list(:product, 5, taxons: [taxon]) }
 
     background do
@@ -43,6 +45,14 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
 
     scenario "not displayed <SHOP> in shared/light_section" do
       expect(page).not_to have_selector ".col-xs-6 li", text: "Shop"
+    end
+
+    scenario "not displayed same product" do
+      expect(page).not_to have_selector ".productBox", text: product.name
+    end
+
+    scenario "not displayed other taxon product" do
+      expect(page).not_to have_selector ".productBox", text: other_product.name
     end
 
     scenario "displayed related products for limited number" do # limit(DISPLAYED_PRODUCTS_LIMIT) ,4で指定中
