@@ -32,7 +32,7 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
       expect(page).to have_title "#{product.name} - BIGBAG Store"
     end
 
-    scenario "displayed and correct product value in products/show" do
+    scenario "displayed and correct product value" do
       expect(page).to have_selector ".media-body h2", text: product.name
       expect(page).to have_selector ".media-body h3", text: product.display_price
       expect(page).to have_selector ".media-body p", text: product.description
@@ -47,15 +47,15 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
       expect(page).not_to have_selector ".col-xs-6 li", text: "Shop"
     end
 
-    scenario "not displayed same product in products/show" do
+    scenario "not displayed same product" do
       expect(page).not_to have_selector ".productBox", text: product.name
     end
 
-    scenario "not displayed other taxon products in products/show" do
+    scenario "not displayed other taxon products" do
       expect(page).not_to have_selector ".productBox", text: other_product.name
     end
 
-    scenario "displayed related products value in products/show" do
+    scenario "displayed related products value" do
       related_products[0..3].all? do |related_product|
         expect(page).to have_selector ".productBox", text: related_product.name
         expect(page).to have_selector ".productBox", text: related_product.display_price.to_s
