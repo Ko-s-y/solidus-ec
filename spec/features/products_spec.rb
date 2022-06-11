@@ -6,7 +6,7 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     given(:taxonomy) { create(:taxonomy) }
     given(:taxon) { create(:taxon, taxonomy: taxonomy) }
     given(:product) { create(:product, taxons: [taxon]) }
-    given(:related_products) { create_list(:product, 4, taxons: [taxon]) }
+    given(:related_products) { create_list(:product, 5, taxons: [taxon]) }
 
     background do
       product.images << image
@@ -45,7 +45,7 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
       expect(page).not_to have_selector ".col-xs-6 li", text: "Shop"
     end
 
-    scenario "displayed related products for limited number" do # limit(DISPLAYED_PRODUCTS_LIMIT)
+    scenario "displayed related products for limited number" do # limit(DISPLAYED_PRODUCTS_LIMIT) ,4で指定中
       expect(page.all('.productBox').count).to eq 4
     end
   end
