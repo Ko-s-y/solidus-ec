@@ -47,12 +47,19 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
       expect(page).not_to have_selector ".col-xs-6 li", text: "Shop"
     end
 
-    scenario "not displayed same product" do
+    scenario "not displayed same product in products/show" do
       expect(page).not_to have_selector ".productBox", text: product.name
     end
 
-    scenario "not displayed other taxon product" do
+    scenario "not displayed other taxon products in products/show" do
       expect(page).not_to have_selector ".productBox", text: other_product.name
+    end
+
+    scenario "displayed related products value in products/show" do
+      related_products[0..3].all? do |related_product|
+        expect(page).to have_selector ".productBox", text: related_product.name
+        expect(page).to have_selector ".productBox", text: related_product.display_price.to_s
+      end
     end
 
     scenario "displayed related products for limited number" do # limit(DISPLAYED_PRODUCTS_LIMIT) ,4で指定中
