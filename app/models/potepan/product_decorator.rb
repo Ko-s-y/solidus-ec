@@ -1,10 +1,10 @@
 module Potepan::ProductDecorator
   def related_products
     Spree::Product.
-      all.
       in_taxons(taxons).
       where.not(id: id).
-      distinct
+      distinct.
+      order(id: :asc)
   end
   Spree::Product.prepend self
 end
