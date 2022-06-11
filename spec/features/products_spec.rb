@@ -44,5 +44,9 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     scenario "not displayed <SHOP> in shared/light_section" do
       expect(page).not_to have_selector ".col-xs-6 li", text: "Shop"
     end
+
+    scenario "displayed related products for limited number" do # limit(DISPLAYED_PRODUCTS_LIMIT)
+      expect(page.all('.productBox').count).to eq 4
+    end
   end
 end
