@@ -60,6 +60,7 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
         expect(page).to have_selector ".productBox", text: related_product.name
         expect(page).to have_selector ".productBox", text: related_product.display_price.to_s
       end
+      expect(page).not_to have_selector ".productBox", text: related_products[4].name
     end
 
     scenario "displayed related products for limited number" do # limit(DISPLAYED_PRODUCTS_LIMIT) ,4で指定中
