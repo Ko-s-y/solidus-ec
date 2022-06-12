@@ -14,6 +14,10 @@ RSpec.describe "Product model of Potepanec", type: :model do
       expect(product.related_products).not_to include product
     end
 
+    it "not related product is not included" do
+      expect(product.related_products).not_to include not_related_product
+    end
+
     it "related products are not duplicate" do
       expect(product.related_products).to eq product.related_products.uniq
       expect(product.related_products).not_to eq duplicate_related_product
