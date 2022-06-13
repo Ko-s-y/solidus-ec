@@ -7,7 +7,7 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     given(:taxon) { create(:taxon, taxonomy: taxonomy) }
     given(:other_taxon) { create(:taxon, taxonomy: taxonomy) }
     given(:product) { create(:product, taxons: [taxon]) }
-    given(:other_product) { create(:product, taxons: [other_taxon]) }
+    given!(:other_product) { create(:product, taxons: [other_taxon]) }
     given(:related_products) { create_list(:product, 5, taxons: [taxon]) }
 
     background do
@@ -33,9 +33,6 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     end
 
     scenario "displayed and correct product value" do
-
-      # binding.pry
-
       expect(page).to have_selector ".media-body h2", text: product.name
       expect(page).to have_selector ".media-body h3", text: product.display_price
       expect(page).to have_selector ".media-body p", text: product.description
@@ -55,9 +52,6 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     end
 
     scenario "not displayed other taxon products" do
-
-      # binding.pry
-
       expect(page).not_to have_selector ".productBox", text: other_product.name
     end
 
@@ -69,8 +63,8 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
       expect(page).not_to have_selector ".productBox", text: related_products[4].name
     end
 
-    scenario "displayed related products for limited number" do # limit(DISPLAYED_PRODUCTS_LIMIT) ,4で指定中
-      expect(page.all('.productBox').count).to eq 4
+    scenario "displayed related products for limited number" do # limit(DISPLAYED_PRODUCTS_LIMIT)
+      expect(page.all('.productBox').count).to eq 4 # products_controllerにて "4" で指定中
     end
   end
 end

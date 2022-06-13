@@ -8,13 +8,13 @@ RSpec.describe "Product model of Potepanec", type: :model do
     let(:other_product) { create(:product, taxons: [other_taxon]) }
     let(:related_products) { create_list :product, 4, taxons: [taxon] }
     let(:duplicate_related_product) { create :product, taxons: [taxon] }
-    let(:not_related_product) { create :product, taxons: [other_taxon] }
+    let!(:not_related_product) { create :product, taxons: [other_taxon] }
 
     it "product is not belong to related products" do
       expect(product.related_products).not_to include product
     end
 
-    it "not related product is not included" do
+    it "not related product is not include" do
       expect(product.related_products).not_to include not_related_product
     end
 
