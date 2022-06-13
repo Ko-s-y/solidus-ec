@@ -19,12 +19,11 @@ RSpec.describe "Product model of Potepanec", type: :model do
     end
 
     it "related products are not duplicate" do
-      expect(product.related_products).to eq product.related_products.uniq
+      expect(product.related_products).to eq product.related_products
       expect(product.related_products).not_to eq duplicate_related_product
     end
 
     it "order by product id asc" do
-      # expect(product.related_products).to eq product.related_products.sort_by(&:id)
       expect(product.related_products).to match related_products
     end
   end
