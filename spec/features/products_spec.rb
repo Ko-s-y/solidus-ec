@@ -33,6 +33,9 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     end
 
     scenario "displayed and correct product value" do
+
+      # binding.pry
+
       expect(page).to have_selector ".media-body h2", text: product.name
       expect(page).to have_selector ".media-body h3", text: product.display_price
       expect(page).to have_selector ".media-body p", text: product.description
@@ -52,6 +55,9 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
     end
 
     scenario "not displayed other taxon products" do
+
+      # binding.pry
+
       expect(page).not_to have_selector ".productBox", text: other_product.name
     end
 
