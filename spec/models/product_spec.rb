@@ -28,5 +28,9 @@ RSpec.describe Potepan::ProductDecorator, type: :model do
     it "not related product not to include in related products" do
       expect(main_product.related_products).not_to include not_related_product
     end
+
+    it "related products order the same at all time" do
+      expect(main_product.related_products).to match main_product.related_products
+    end
   end
 end
