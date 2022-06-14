@@ -12,7 +12,7 @@ RSpec.describe Potepan::ProductDecorator, type: :model do
     let!(:related_product2) { create(:product, taxons: [taxon2, taxon3]) }
     let!(:related_product3) { create(:product, taxons: [taxon3, taxon4]) }
     let!(:related_product4) { create(:product, taxons: [taxon4, taxon1]) }
-    let!(:not_related_product) { create :product, taxons: [other_taxon] }
+    let!(:not_related_product) { create(:product, taxons: [other_taxon]) }
 
     it "main product not to include related products" do
       expect(main_product.related_products).not_to include main_product
