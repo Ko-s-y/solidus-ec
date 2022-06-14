@@ -4,7 +4,7 @@ RSpec.describe "Products request of Potepanec", type: :request do
   describe "#show" do
     let(:taxon) { create(:taxon) }
     let(:product) { create(:product, taxons: [taxon]) }
-    let(:related_products) { create_list(:product, 5, taxons: [taxon]) }
+    let(:related_products) { create_list(:product, 6, taxons: [taxon]) }
     let(:image) { create(:image) }
 
     before do
@@ -29,14 +29,19 @@ RSpec.describe "Products request of Potepanec", type: :request do
       expect(response.body).to include product.images.first.attachment(:small)
     end
 
-    it "get correct value for related products" do
+    it "get correct value for related 4 products" do
       related_products[0..3].all? do |related_product|
         expect(response.body).to include related_product.name
         expect(response.body).to include related_product.display_price.to_s
         expect(response.body).to include related_product.images.first.attachment(:product)
       end
+    end
+
+    it "not get value 5th and subsequent related products" do
       expect(response.body).not_to include related_products[4].name
       expect(response.body).not_to include related_products[4].images.first.attachment(:product)
+      expect(response.body).not_to include related_products[5].name
+      expect(response.body).not_to include related_products[5].images.first.attachment(:product)
     end
   end
 end

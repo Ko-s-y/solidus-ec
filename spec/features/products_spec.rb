@@ -55,7 +55,7 @@ RSpec.feature "Products feature of Potepanec", type: :feature do
       expect(page).not_to have_selector ".productBox", text: other_product.name
     end
 
-    scenario "displayed related products value" do
+    scenario "displayed related 4 products value" do
       related_products[0..3].all? do |related_product|
         expect(page).to have_selector ".productBox", text: related_product.name
         expect(page).to have_selector ".productBox", text: related_product.display_price.to_s
