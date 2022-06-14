@@ -4,7 +4,7 @@ RSpec.describe "Products request of Potepanec", type: :request do
   describe "#show" do
     let(:taxon) { create(:taxon) }
     let(:product) { create(:product, taxons: [taxon]) }
-    let(:related_products) { create_list(:product, 6, taxons: [taxon]) }
+    let(:related_products) { create_list(:product, 5, taxons: [taxon]) }
     let(:image) { create(:image) }
 
     before do
@@ -40,8 +40,6 @@ RSpec.describe "Products request of Potepanec", type: :request do
     it "not get value 5th and subsequent related products" do
       expect(response.body).not_to include related_products[4].name
       expect(response.body).not_to include related_products[4].images.first.attachment(:product)
-      expect(response.body).not_to include related_products[5].name
-      expect(response.body).not_to include related_products[5].images.first.attachment(:product)
     end
   end
 end
