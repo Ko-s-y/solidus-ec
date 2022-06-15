@@ -27,7 +27,7 @@ RSpec.describe Potepan::ProductDecorator, type: :model do
     end
 
     it "related products are not duplicate" do
-      expect(main_product.related_products == main_product.related_products.uniq).to be true
+      expect(main_product.related_products).to eq main_product.related_products.uniq
     end
 
     it "related products are correctly sort order" do
